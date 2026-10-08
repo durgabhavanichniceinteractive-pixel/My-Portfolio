@@ -525,531 +525,182 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // animation
 
-const canvas = document.getElementById("caustics-bg");
-const gl = canvas.getContext("webgl", {
-  antialias: true,
-  alpha: false
+const canvas = document.getElementById("particleCanvas");
+const ctx = canvas.getContext("2d");
+
+let particles = [];
+let mouse = {
+  x: -100,
+  y: -100
+};
+
+function resize() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
+
+resize();
+window.addEventListener("resize", resize);
+
+window.addEventListener("mousemove", (e) => {
+  mouse.x = e.clientX;
+  mouse.y = e.clientY;
 });
 
-if (!gl) {
-  console.warn("WebGL is not supported.");
-} else {
-
-  const vertexShaderSource = `
-    attribute vec2 a_position;
-
-    void main() {
-      gl_Position = vec4(a_position, 0.0, 1.0);
-    }
-  `;
-
-  const fragmentShaderSource = `
-    precision highp float;
-
-    uniform vec2 u_resolution;
-    uniform float u_time;
-    uniform vec2 u_mouse;
-
-    /*
-      Caustics background
-      -------------------
-      Animated light waves
-      layered distortion
-      mouse interaction
-    */
-
-    float wave(vec2 p, float t) {
-
-      float a = sin(p.x * 5.0 + t);
-      float b = sin(p.y * 6.0 - t * 1.2);
-
-      float c = sin(
-        (p.x + p.y) * 8.0 +
-        sin(t * 0.5)
-      );
-
-      float d = sin(
-        length(p) * 12.0 -
-        t * 1.5
-      );
-
-      return (a + b + c + d) * 0.25;
-    }
-
-
-    void main() {
-
-      vec2 uv = gl_FragCoord.xy / u_resolution.xy;
-
-      /*
-        Correct aspect ratio
-      */
-      float aspect =
-        u_resolution.x /
-        u_resolution.y;
-
-      vec2 p = uv;
-
-      p.x *= aspect;
-
-
-      /*
-        Mouse influence
-      */
-      vec2 mouse = u_mouse;
-
-      mouse.x *= aspect;
-
-      float mouseDistance =
-        distance(p, mouse);
-
-      float mouseRipple =
-        sin(
-          mouseDistance * 18.0 -
-          u_time * 1.8
-        );
-
-      mouseRipple *=
-        exp(-mouseDistance * 3.0);
-
-      p +=
-        normalize(p - mouse + 0.0001)
-        * mouseRipple
-        * 0.025;
-
-
-      /*
-        Main animation
-      */
-      float t =
-        u_time * 0.22;
-
-
-      float w1 =
-        wave(p * 1.2, t);
-
-      float w2 =
-        wave(
-          p * 1.8 +
-          vec2(2.5, -1.5),
-          -t * 0.8
-        );
-
-      float w3 =
-        wave(
-          p * 2.8 +
-          vec2(-3.0, 2.0),
-          t * 0.55
-        );
-
-
-      /*
-        Layered caustic pattern
-      */
-      float caustic =
-        w1 * 0.5 +
-        w2 * 0.35 +
-        w3 * 0.15;
-
-
-      caustic =
-        abs(caustic);
-
-
-      caustic =
-        smoothstep(
-          0.12,
-          0.75,
-          caustic
-        );
-
-
-      /*
-        Additional light webs
-      */
-      float lines1 =
-        abs(
-          sin(
-            (p.x + p.y) * 14.0 +
-            t
-          )
-        );
-
-      float lines2 =
-        abs(
-          sin(
-            (p.x - p.y) * 18.0 -
-            t * 1.2
-          )
-        );
-
-      float lightPattern =
-        lines1 *
-        lines2;
-
-      lightPattern =
-        smoothstep(
-          0.65,
-          0.95,
-          lightPattern
-        );
-
-
-      /*
-        Combine
-      */
-      float light =
-        caustic * 0.75 +
-        lightPattern * 0.35;
-
-
-      /*
-        Dark premium background
-      */
-      vec3 baseColor =
-        vec3(
-          0.005,
-          0.025,
-          0.035
-        );
-
-
-      /*
-        Cool light
-      */
-     vec3 lightColor = vec3(0.267, 0.890, 0.784);
-      
-
-
-      vec3 finalColor =
-        mix(
-          baseColor,
-          lightColor,
-          light
-        );
-
-
-      /*
-        Soft center illumination
-      */
-      float center =
-        1.0 -
-        distance(
-          uv,
-          vec2(0.5)
-        );
-
-      center =
-        smoothstep(
-          0.0,
-          0.8,
-          center
-        );
-
-      finalColor +=
-        vec3(
-          0.01,
-          0.06,
-          0.08
-        ) * center;
-
-
-      /*
-        Vignette
-      */
-      float vignette =
-        distance(
-          uv,
-          vec2(0.5)
-        );
-
-      finalColor *=
-        1.0 -
-        vignette * 0.45;
-
-
-      gl_FragColor =
-        vec4(
-          finalColor,
-          1.0
-        );
-    }
-  `;
-
-
-  function createShader(type, source) {
-
-    const shader =
-      gl.createShader(type);
-
-    gl.shaderSource(
-      shader,
-      source
-    );
-
-    gl.compileShader(shader);
-
-    if (
-      !gl.getShaderParameter(
-        shader,
-        gl.COMPILE_STATUS
-      )
-    ) {
-
-      console.error(
-        gl.getShaderInfoLog(shader)
-      );
-
-      gl.deleteShader(shader);
-
-      return null;
-    }
-
-    return shader;
-  }
-
-
-  const vertexShader =
-    createShader(
-      gl.VERTEX_SHADER,
-      vertexShaderSource
-    );
-
-
-  const fragmentShader =
-    createShader(
-      gl.FRAGMENT_SHADER,
-      fragmentShaderSource
-    );
-
-
-  const program =
-    gl.createProgram();
-
-
-  gl.attachShader(
-    program,
-    vertexShader
-  );
-
-  gl.attachShader(
-    program,
-    fragmentShader
-  );
-
-  gl.linkProgram(program);
-
-
-  if (
-    !gl.getProgramParameter(
-      program,
-      gl.LINK_STATUS
-    )
-  ) {
-
-    console.error(
-      gl.getProgramInfoLog(program)
-    );
-  }
-
-
-  gl.useProgram(program);
-
-
-  /*
-    Full screen rectangle
-  */
-  const positionBuffer =
-    gl.createBuffer();
-
-  gl.bindBuffer(
-    gl.ARRAY_BUFFER,
-    positionBuffer
-  );
-
-
-  gl.bufferData(
-    gl.ARRAY_BUFFER,
-    new Float32Array([
-      -1, -1,
-       1, -1,
-      -1,  1,
-
-      -1,  1,
-       1, -1,
-       1,  1
-    ]),
-    gl.STATIC_DRAW
-  );
-
-
-  const positionLocation =
-    gl.getAttribLocation(
-      program,
-      "a_position"
-    );
-
-
-  gl.enableVertexAttribArray(
-    positionLocation
-  );
-
-
-  gl.vertexAttribPointer(
-    positionLocation,
-    2,
-    gl.FLOAT,
-    false,
-    0,
-    0
-  );
-
-
-  const timeLocation =
-    gl.getUniformLocation(
-      program,
-      "u_time"
-    );
-
-
-  const resolutionLocation =
-    gl.getUniformLocation(
-      program,
-      "u_resolution"
-    );
-
-
-  const mouseLocation =
-    gl.getUniformLocation(
-      program,
-      "u_mouse"
-    );
-
-
-  let mouseX = 0.5;
-  let mouseY = 0.5;
-
-  let targetMouseX = 0.5;
-  let targetMouseY = 0.5;
-
-
-  /*
-    Mouse movement
-  */
-  window.addEventListener(
-    "mousemove",
-    (event) => {
-
-      targetMouseX =
-        event.clientX /
-        window.innerWidth;
-
-      targetMouseY =
-        1.0 -
-        event.clientY /
-        window.innerHeight;
-    }
-  );
-
-
-  /*
-    Resize
-  */
-  function resize() {
-
-    const dpr =
-      Math.min(
-        window.devicePixelRatio || 1,
-        2
-      );
-
-    canvas.width =
-      window.innerWidth * dpr;
-
-    canvas.height =
-      window.innerHeight * dpr;
-
-    canvas.style.width =
-      window.innerWidth + "px";
-
-    canvas.style.height =
-      window.innerHeight + "px";
-
-    gl.viewport(
-      0,
-      0,
-      canvas.width,
-      canvas.height
-    );
-  }
-
-
-  window.addEventListener(
-    "resize",
-    resize
-  );
-
-  resize();
-
-
-  /*
-    Animation
-  */
-  let startTime =
-    performance.now();
-
-
-  function render(now) {
-
-    const time =
-      (now - startTime) / 1000;
-
-
-    /*
-      Smooth mouse
-    */
-    mouseX +=
-      (targetMouseX - mouseX) *
-      0.04;
-
-    mouseY +=
-      (targetMouseY - mouseY) *
-      0.04;
-
-
-    gl.useProgram(program);
-
-
-    gl.uniform1f(
-      timeLocation,
-      time
-    );
-
-
-    gl.uniform2f(
-      resolutionLocation,
-      canvas.width,
-      canvas.height
-    );
-
-
-    gl.uniform2f(
-      mouseLocation,
-      mouseX,
-      mouseY
-    );
-
-
-    gl.drawArrays(
-      gl.TRIANGLES,
-      0,
-      6
-    );
-
-
-    requestAnimationFrame(render);
-  }
-
-
-  requestAnimationFrame(render);
+for (let i = 0; i < 180; i++) {
+  particles.push({
+    x: Math.random() * window.innerWidth,
+    y: Math.random() * window.innerHeight,
+
+    size:
+      Math.random() < 0.15
+        ? Math.random() * 18 + 8
+        : Math.random() * 2.5 + 0.5,
+
+    speed:
+      Math.random() * 0.5 + 0.1,
+
+    drift:
+      (Math.random() - 0.5) * 0.3,
+
+    opacity:
+      Math.random() * 0.6 + 0.15,
+
+    depth:
+      Math.random()
+  });
 }
+
+function animate() {
+
+  ctx.clearRect(
+    0,
+    0,
+    canvas.width,
+    canvas.height
+  );
+
+  particles.forEach((p) => {
+
+    /* movement */
+
+    p.y -= p.speed;
+
+    p.x += p.drift;
+
+    /* mouse interaction */
+
+    const dx = p.x - mouse.x;
+    const dy = p.y - mouse.y;
+
+    const distance =
+      Math.sqrt(
+        dx * dx + dy * dy
+      );
+
+    if (distance < 150) {
+
+      const force =
+        (150 - distance) / 150;
+
+      p.x +=
+        (dx / (distance || 1)) *
+        force *
+        2;
+
+      p.y +=
+        (dy / (distance || 1)) *
+        force *
+        2;
+    }
+
+    /* reset */
+
+    if (p.y < -30) {
+      p.y =
+        canvas.height + 30;
+
+      p.x =
+        Math.random() *
+        canvas.width;
+    }
+
+    if (p.x < -30) {
+      p.x =
+        canvas.width + 30;
+    }
+
+    if (p.x > canvas.width + 30) {
+      p.x = -30;
+    }
+
+    /* bokeh */
+
+    if (p.size > 8) {
+
+      const gradient =
+        ctx.createRadialGradient(
+          p.x,
+          p.y,
+          0,
+          p.x,
+          p.y,
+          p.size
+        );
+
+      gradient.addColorStop(
+        0,
+        `rgba(255,255,255,${p.opacity})`
+      );
+
+      gradient.addColorStop(
+        0.3,
+        `rgba(120,190,255,${p.opacity * 0.5})`
+      );
+
+      gradient.addColorStop(
+        1,
+        "rgba(120,190,255,0)"
+      );
+
+      ctx.fillStyle = gradient;
+
+      ctx.beginPath();
+
+      ctx.arc(
+        p.x,
+        p.y,
+        p.size,
+        0,
+        Math.PI * 2
+      );
+
+      ctx.fill();
+
+    } else {
+
+      /* small dust */
+
+      ctx.beginPath();
+
+      ctx.arc(
+        p.x,
+        p.y,
+        p.size,
+        0,
+        Math.PI * 2
+      );
+
+      ctx.fillStyle =
+        `rgba(190,220,255,${p.opacity})`;
+
+      ctx.fill();
+
+    }
+
+  });
+
+  requestAnimationFrame(animate);
+}
+
+animate();

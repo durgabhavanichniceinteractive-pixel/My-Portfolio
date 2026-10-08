@@ -90,7 +90,7 @@ html {
 
 body {
   font-family: var(--font-body);
-  background-color: var(--bg-black);
+  background-color: #1c1c33;
   color: var(--text-light);
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
@@ -133,7 +133,7 @@ ul, ol {
 
 /* --- Ambient Luxury Background --- */
 
-#caustics-bg {
+ #particleCanvas {
   position: fixed;
   inset: 0;
   width: 100%;
@@ -141,6 +141,7 @@ ul, ol {
   z-index: 0;
   pointer-events: none;
 }
+
 
 /* .ambient-background { position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
 .ambient-glow { position: absolute; border-radius: 50%; filter: blur(130px); opacity: 0.35; transition: opacity 1s ease; }
