@@ -520,3 +520,540 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
 });
+
+
+
+// animation
+
+const canvas = document.getElementById("caustics-bg");
+const gl = canvas.getContext("webgl", {
+  antialias: true,
+  alpha: false
+});
+
+if (!gl) {
+  console.warn("WebGL is not supported.");
+} else {
+
+  const vertexShaderSource = `
+    attribute vec2 a_position;
+
+    void main() {
+      gl_Position = vec4(a_position, 0.0, 1.0);
+    }
+  `;
+
+  const fragmentShaderSource = `
+    precision highp float;
+
+    uniform vec2 u_resolution;
+    uniform float u_time;
+    uniform vec2 u_mouse;
+
+    /*
+      Caustics background
+      -------------------
+      Animated light waves
+      layered distortion
+      mouse interaction
+    */
+
+    float wave(vec2 p, float t) {
+
+      float a = sin(p.x * 5.0 + t);
+      float b = sin(p.y * 6.0 - t * 1.2);
+
+      float c = sin(
+        (p.x + p.y) * 8.0 +
+        sin(t * 0.5)
+      );
+
+      float d = sin(
+        length(p) * 12.0 -
+        t * 1.5
+      );
+
+      return (a + b + c + d) * 0.25;
+    }
+
+
+    void main() {
+
+      vec2 uv = gl_FragCoord.xy / u_resolution.xy;
+
+      /*
+        Correct aspect ratio
+      */
+      float aspect =
+        u_resolution.x /
+        u_resolution.y;
+
+      vec2 p = uv;
+
+      p.x *= aspect;
+
+
+      /*
+        Mouse influence
+      */
+      vec2 mouse = u_mouse;
+
+      mouse.x *= aspect;
+
+      float mouseDistance =
+        distance(p, mouse);
+
+      float mouseRipple =
+        sin(
+          mouseDistance * 18.0 -
+          u_time * 1.8
+        );
+
+      mouseRipple *=
+        exp(-mouseDistance * 3.0);
+
+      p +=
+        normalize(p - mouse + 0.0001)
+        * mouseRipple
+        * 0.025;
+
+
+      /*
+        Main animation
+      */
+      float t =
+        u_time * 0.22;
+
+
+      float w1 =
+        wave(p * 1.2, t);
+
+      float w2 =
+        wave(
+          p * 1.8 +
+          vec2(2.5, -1.5),
+          -t * 0.8
+        );
+
+      float w3 =
+        wave(
+          p * 2.8 +
+          vec2(-3.0, 2.0),
+          t * 0.55
+        );
+
+
+      /*
+        Layered caustic pattern
+      */
+      float caustic =
+        w1 * 0.5 +
+        w2 * 0.35 +
+        w3 * 0.15;
+
+
+      caustic =
+        abs(caustic);
+
+
+      caustic =
+        smoothstep(
+          0.12,
+          0.75,
+          caustic
+        );
+
+
+      /*
+        Additional light webs
+      */
+      float lines1 =
+        abs(
+          sin(
+            (p.x + p.y) * 14.0 +
+            t
+          )
+        );
+
+      float lines2 =
+        abs(
+          sin(
+            (p.x - p.y) * 18.0 -
+            t * 1.2
+          )
+        );
+
+      float lightPattern =
+        lines1 *
+        lines2;
+
+      lightPattern =
+        smoothstep(
+          0.65,
+          0.95,
+          lightPattern
+        );
+
+
+      /*
+        Combine
+      */
+      float light =
+        caustic * 0.75 +
+        lightPattern * 0.35;
+
+
+      /*
+        Dark premium background
+      */
+      vec3 baseColor =
+        vec3(
+          0.005,
+          0.025,
+          0.035
+        );
+
+
+      /*
+        Cool light
+      */
+      vec3 lightColor =
+        vec3(
+          0.08,
+          0.55,
+          0.68
+        );
+
+
+      vec3 finalColor =
+        mix(
+          baseColor,
+          lightColor,
+          light
+        );
+
+
+      /*
+        Soft center illumination
+      */
+      float center =
+        1.0 -
+        distance(
+          uv,
+          vec2(0.5)
+        );
+
+      center =
+        smoothstep(
+          0.0,
+          0.8,
+          center
+        );
+
+      finalColor +=
+        vec3(
+          0.01,
+          0.06,
+          0.08
+        ) * center;
+
+
+      /*
+        Vignette
+      */
+      float vignette =
+        distance(
+          uv,
+          vec2(0.5)
+        );
+
+      finalColor *=
+        1.0 -
+        vignette * 0.45;
+
+
+      gl_FragColor =
+        vec4(
+          finalColor,
+          1.0
+        );
+    }
+  `;
+
+
+  function createShader(type, source) {
+
+    const shader =
+      gl.createShader(type);
+
+    gl.shaderSource(
+      shader,
+      source
+    );
+
+    gl.compileShader(shader);
+
+    if (
+      !gl.getShaderParameter(
+        shader,
+        gl.COMPILE_STATUS
+      )
+    ) {
+
+      console.error(
+        gl.getShaderInfoLog(shader)
+      );
+
+      gl.deleteShader(shader);
+
+      return null;
+    }
+
+    return shader;
+  }
+
+
+  const vertexShader =
+    createShader(
+      gl.VERTEX_SHADER,
+      vertexShaderSource
+    );
+
+
+  const fragmentShader =
+    createShader(
+      gl.FRAGMENT_SHADER,
+      fragmentShaderSource
+    );
+
+
+  const program =
+    gl.createProgram();
+
+
+  gl.attachShader(
+    program,
+    vertexShader
+  );
+
+  gl.attachShader(
+    program,
+    fragmentShader
+  );
+
+  gl.linkProgram(program);
+
+
+  if (
+    !gl.getProgramParameter(
+      program,
+      gl.LINK_STATUS
+    )
+  ) {
+
+    console.error(
+      gl.getProgramInfoLog(program)
+    );
+  }
+
+
+  gl.useProgram(program);
+
+
+  /*
+    Full screen rectangle
+  */
+  const positionBuffer =
+    gl.createBuffer();
+
+  gl.bindBuffer(
+    gl.ARRAY_BUFFER,
+    positionBuffer
+  );
+
+
+  gl.bufferData(
+    gl.ARRAY_BUFFER,
+    new Float32Array([
+      -1, -1,
+       1, -1,
+      -1,  1,
+
+      -1,  1,
+       1, -1,
+       1,  1
+    ]),
+    gl.STATIC_DRAW
+  );
+
+
+  const positionLocation =
+    gl.getAttribLocation(
+      program,
+      "a_position"
+    );
+
+
+  gl.enableVertexAttribArray(
+    positionLocation
+  );
+
+
+  gl.vertexAttribPointer(
+    positionLocation,
+    2,
+    gl.FLOAT,
+    false,
+    0,
+    0
+  );
+
+
+  const timeLocation =
+    gl.getUniformLocation(
+      program,
+      "u_time"
+    );
+
+
+  const resolutionLocation =
+    gl.getUniformLocation(
+      program,
+      "u_resolution"
+    );
+
+
+  const mouseLocation =
+    gl.getUniformLocation(
+      program,
+      "u_mouse"
+    );
+
+
+  let mouseX = 0.5;
+  let mouseY = 0.5;
+
+  let targetMouseX = 0.5;
+  let targetMouseY = 0.5;
+
+
+  /*
+    Mouse movement
+  */
+  window.addEventListener(
+    "mousemove",
+    (event) => {
+
+      targetMouseX =
+        event.clientX /
+        window.innerWidth;
+
+      targetMouseY =
+        1.0 -
+        event.clientY /
+        window.innerHeight;
+    }
+  );
+
+
+  /*
+    Resize
+  */
+  function resize() {
+
+    const dpr =
+      Math.min(
+        window.devicePixelRatio || 1,
+        2
+      );
+
+    canvas.width =
+      window.innerWidth * dpr;
+
+    canvas.height =
+      window.innerHeight * dpr;
+
+    canvas.style.width =
+      window.innerWidth + "px";
+
+    canvas.style.height =
+      window.innerHeight + "px";
+
+    gl.viewport(
+      0,
+      0,
+      canvas.width,
+      canvas.height
+    );
+  }
+
+
+  window.addEventListener(
+    "resize",
+    resize
+  );
+
+  resize();
+
+
+  /*
+    Animation
+  */
+  let startTime =
+    performance.now();
+
+
+  function render(now) {
+
+    const time =
+      (now - startTime) / 1000;
+
+
+    /*
+      Smooth mouse
+    */
+    mouseX +=
+      (targetMouseX - mouseX) *
+      0.04;
+
+    mouseY +=
+      (targetMouseY - mouseY) *
+      0.04;
+
+
+    gl.useProgram(program);
+
+
+    gl.uniform1f(
+      timeLocation,
+      time
+    );
+
+
+    gl.uniform2f(
+      resolutionLocation,
+      canvas.width,
+      canvas.height
+    );
+
+
+    gl.uniform2f(
+      mouseLocation,
+      mouseX,
+      mouseY
+    );
+
+
+    gl.drawArrays(
+      gl.TRIANGLES,
+      0,
+      6
+    );
+
+
+    requestAnimationFrame(render);
+  }
+
+
+  requestAnimationFrame(render);
+}
