@@ -653,10 +653,10 @@ function animate() {
         `rgba(255,255,255,${p.opacity})`
       );
 
-      gradient.addColorStop(
-        0.3,
-        `rgba(120,190,255,${p.opacity * 0.5})`
-      );
+   gradient.addColorStop(
+  0.3,
+  `rgba(16, 161, 108, ${p.opacity * 0.8})`
+);
 
       gradient.addColorStop(
         1,
@@ -691,8 +691,7 @@ function animate() {
         Math.PI * 2
       );
 
-      ctx.fillStyle =
-        `rgba(190,220,255,${p.opacity})`;
+      ctx.fillStyle = `rgba(16, 161, 108, ${p.opacity})`;
 
       ctx.fill();
 
