@@ -717,12 +717,8 @@ if (!gl) {
       /*
         Cool light
       */
-      vec3 lightColor =
-        vec3(
-          0.08,
-          0.55,
-          0.68
-        );
+     vec3 lightColor = vec3(0.267, 0.890, 0.784);
+      
 
 
       vec3 finalColor =
