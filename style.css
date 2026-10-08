@@ -788,9 +788,9 @@ ul, ol {
 /* Scroll Indicator */
 .scroll-indicator { position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 0.65rem; opacity: 0.75; transition: opacity var(--transition-fast), transform var(--transition-fast); }
 .scroll-indicator:hover { opacity: 1; transform: translateX(-50%) translateY(3px); }
-.mouse-icon { width: 22px; height: 36px; border: 2px solid var(--text-muted); border-radius: 14px; display: flex; justify-content: center; padding-top: 6px; }
+.mouse-icon { width: 22px; height: 36px; border: 2px solid #fff; border-radius: 14px; display: flex; justify-content: center; padding-top: 6px; }
 .mouse-wheel { width: 3px; height: 6px; background-color: var(--gold); border-radius: 2px; animation: mouseWheelMove 2s infinite ease-in-out; }
-.scroll-label { font-family: var(--font-mono); font-size: 0.65rem; letter-spacing: 0.16em; color: var(--text-muted); }
+.scroll-label { font-family: var(--font-mono); font-size: 0.65rem; letter-spacing: 0.16em; color: #fff; }
 
 @keyframes mouseWheelMove {
   0% { transform: translateY(0); opacity: 1; }
