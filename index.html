@@ -1,0 +1,1584 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bhavani — Frontend Developer • QA • AI-Assisted Developer</title>
+  <meta name="description" content="Portfolio of Bhavani — Frontend Developer, QA Specialist, and AI-Assisted Developer building responsive, reliable, and beautifully crafted digital experiences.">
+  <meta name="author" content="Bhavani">
+  <meta name="keywords" content="Bhavani, Frontend Developer, QA Engineer, AI Developer, Responsive Web Design, GSAP, JavaScript, HTML5, CSS3, UI Testing">
+
+  <!-- Open Graph / Meta -->
+  <meta property="og:title" content="Bhavani — Frontend Developer • QA • AI-Assisted Developer">
+  <meta property="og:description" content="A developer who builds, tests and improves digital experiences with modern frontend craft, QA precision, and AI workflows.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="assets/images/bhavani-logo.jpg">
+
+  <!-- Favicon using Bhavani's actual logo -->
+  <link rel="icon" type="image/jpeg" href="assets/images/bhavani-logo.jpg">
+  <link rel="apple-touch-icon" href="assets/images/bhavani-logo.jpg">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Core Stylesheet -->
+  <link rel="stylesheet" href="style.css?v=20261008">
+
+  <!-- GSAP & ScrollTrigger -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+  
+  <!-- Main Script -->
+  <script src="script.js?v=20261008" defer></script>
+</head>
+<body class="bg-black text-light antialiased selection:bg-gold selection:text-black">
+
+  <!-- Custom Cursor (Desktop Only) -->
+  <div id="custom-cursor" class="custom-cursor" aria-hidden="true">
+    <div class="cursor-dot"></div>
+    <div class="cursor-ring">
+      <span class="cursor-label"></span>
+    </div>
+  </div>
+
+  <!-- Ambient Luxury Glow Background -->
+  <div class="ambient-background" aria-hidden="true">
+    <div class="ambient-glow glow-top"></div>
+    <div class="ambient-glow glow-mid"></div>
+    <div class="ambient-noise"></div>
+  </div>
+
+  <!-- Quick Toast Notification -->
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <!-- Preloader Screen -->
+  <div id="preloader" class="preloader" aria-label="Loading site">
+    <div class="preloader-content">
+      <div class="preloader-logo-wrap">
+        <img src="assets/images/bhavani-logo.jpg" alt="Bhavani Logo" class="preloader-logo">
+      </div>
+      <div class="preloader-text">
+        <span class="preloader-name">BHAVANI</span>
+        <span class="preloader-sub">FRONTEND • QA • AI</span>
+      </div>
+      <div class="preloader-progress-track">
+        <div class="preloader-progress-bar" id="preloader-bar"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Header / Navigation -->
+  <header class="site-header" id="header">
+    <nav class="nav-container" aria-label="Main Navigation">
+      <!-- Logo Branding -->
+      <a href="#hero" class="brand-link" aria-label="Bhavani Homepage">
+        <div class="brand-logo-frame">
+          <img src="assets/images/bhavani-logo.jpg" alt="Bhavani Logo" class="brand-logo-img">
+        </div>
+        <div class="brand-info">
+          <span class="brand-name">BHAVANI</span>
+          <span class="brand-tag">DEV • QA • AI</span>
+        </div>
+      </a>
+
+      <!-- Desktop Nav Links -->
+      <ul class="nav-links" id="desktop-nav">
+        <li><a href="#work" class="nav-item">WORK</a></li>
+        <li><a href="#about" class="nav-item">ABOUT</a></li>
+        <li><a href="#skills" class="nav-item">SKILLS</a></li>
+        <li><a href="#approach" class="nav-item">APPROACH</a></li>
+        <li><a href="#qa-lab" class="nav-item">QA LAB</a></li>
+        <li><a href="#journey" class="nav-item">JOURNEY</a></li>
+        <li><a href="#contact" class="nav-item nav-item-cta">CONTACT</a></li>
+      </ul>
+
+      <!-- Status Indicator Pill -->
+      <div class="nav-status-pill hidden-mobile" title="Current Status">
+        <span class="status-dot"></span>
+        <span class="status-text">Available for Opportunities</span>
+      </div>
+
+      <!-- Mobile Hamburger Button -->
+      <button id="mobile-toggle" class="mobile-toggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="mobile-menu">
+        <span class="hamburger-line line-1"></span>
+        <span class="hamburger-line line-2"></span>
+      </button>
+    </nav>
+  </header>
+
+  <!-- Mobile Menu Overlay -->
+  <div id="mobile-menu" class="mobile-menu" aria-hidden="true">
+    <div class="mobile-menu-inner">
+      <div class="mobile-menu-header">
+        <div class="brand-logo-frame">
+          <img src="assets/images/bhavani-logo.jpg" alt="Bhavani Logo" class="brand-logo-img">
+        </div>
+        <span class="brand-name">BHAVANI</span>
+        <button type="button" id="mobile-close" class="mobile-close" aria-label="Close navigation menu">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><line x1="5" y1="5" x2="19" y2="19"/><line x1="19" y1="5" x2="5" y2="19"/></svg>
+        </button>
+      </div>
+      <ul class="mobile-nav-links">
+        <li><a href="#work" class="mobile-nav-item"><span>01</span> WORK</a></li>
+        <li><a href="#about" class="mobile-nav-item"><span>02</span> ABOUT</a></li>
+        <li><a href="#skills" class="mobile-nav-item"><span>03</span> SKILLS</a></li>
+        <li><a href="#approach" class="mobile-nav-item"><span>04</span> APPROACH</a></li>
+        <li><a href="#qa-lab" class="mobile-nav-item"><span>05</span> QA LAB</a></li>
+        <li><a href="#journey" class="mobile-nav-item"><span>06</span> JOURNEY</a></li>
+        <li><a href="#contact" class="mobile-nav-item"><span>07</span> CONTACT</a></li>
+      </ul>
+      <div class="mobile-menu-footer">
+        <p class="mobile-status"><span class="status-dot"></span> Available for Projects & QA Roles</p>
+        <div class="mobile-socials">
+          <a href="https://github.com/durgabhavanichniceinteractive-pixel" target="_blank" rel="noopener noreferrer">GitHub</a>
+          <a href="https://linkedin.com/in/[EDIT-THIS-LINKEDIN]" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+          <a href="mailto:bhavani.dev@example.com">Email</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <main id="main-content">
+
+    <!-- HERO SECTION -->
+    <section id="hero" class="hero-section" aria-labelledby="hero-title">
+      <div class="section-container hero-container">
+        
+        <!-- Hero Text Block -->
+        <div class="hero-content">
+          <div class="hero-badge reveal-elem">
+            <span class="badge-icon">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg>
+            </span>
+            <span class="badge-text">Frontend Developer • QA Specialist • AI-Assisted Developer</span>
+          </div>
+
+          <h1 id="hero-title" class="hero-title reveal-elem">
+            <span class="hero-name-label">BHAVANI</span>
+            <span class="hero-statement">I BUILD DIGITAL EXPERIENCES THAT WORK BEAUTIFULLY.</span>
+          </h1>
+
+          <p class="hero-subtext reveal-elem">
+            Building responsive, interactive and carefully tested digital experiences with a blend of frontend development, quality assurance and AI-assisted workflows.
+          </p>
+
+          <!-- Core CTAs -->
+          <div class="hero-actions reveal-elem">
+            <a href="#work" class="btn btn-primary magnet-btn" data-cursor="VIEW">
+              <span class="btn-text">VIEW MY WORK</span>
+              <span class="btn-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </span>
+            </a>
+            <a href="#contact" class="btn btn-secondary magnet-btn" data-cursor="CONNECT">
+              <span class="btn-text">LET'S CONNECT</span>
+            </a>
+          </div>
+
+          <!-- Hero Metrics Bar -->
+          <div class="hero-meta reveal-elem">
+            <div class="meta-item">
+              <span class="meta-val">100%</span>
+              <span class="meta-lbl">Responsive Fidelity</span>
+            </div>
+            <div class="meta-divider"></div>
+            <div class="meta-item">
+              <span class="meta-val">Clean</span>
+              <span class="meta-lbl">Semantic Code & A11y</span>
+            </div>
+            <div class="meta-divider"></div>
+            <div class="meta-item">
+              <span class="meta-val">AI+QA</span>
+              <span class="meta-lbl">Accelerated Workflows</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Hero Visual: Interactive Browser Device Preview -->
+        <div class="hero-visual reveal-elem">
+          <div class="browser-mockup magnet-card" id="hero-browser">
+            <!-- Browser Header -->
+            <div class="browser-header">
+              <div class="browser-dots">
+                <span class="dot dot-close"></span>
+                <span class="dot dot-minimize"></span>
+                <span class="dot dot-maximize"></span>
+              </div>
+              <div class="browser-address-bar">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="lock-icon"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                <span class="address-text">nexa-ai-lab.bhavani.dev</span>
+              </div>
+              <div class="browser-status-tag">
+                <span class="status-pulse"></span>
+                <span>QA PASS</span>
+              </div>
+            </div>
+
+            <!-- Browser Viewport / Live Screenshot -->
+            <div class="browser-screen">
+              <img src="assets/projects/hero-img.jpg" alt="Nexa AI Lab Preview" class="browser-screen-img" loading="eager">
+              <div class="browser-overlay">
+                <!-- <div class="overlay-card">
+                  <div class="card-eyebrow">FEATURED SHOWCASE</div>
+                  <div class="card-title">01 / Nexa AI Lab</div>
+                  <div class="card-tags">
+                    <span>HTML5</span>
+                    <span>CSS3</span>
+                    <span>JavaScript</span>
+                    <span>AI Workflow</span>
+                  </div>
+                  <a href="#project-01" class="overlay-link">Inspect Architecture &rarr;</a>
+                </div> -->
+              </div>
+            </div>
+
+            <!-- Floating Context Badges -->
+            <div class="float-chip chip-bottom-left" aria-hidden="true">
+              <span class="chip-dot"></span>
+              <span>Cross-Browser Verified</span>
+            </div>
+            <div class="float-chip chip-top-right" aria-hidden="true">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+              <span>60 FPS Animation</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Scroll Indicator -->
+      <a href="#about" class="scroll-indicator" aria-label="Scroll to About section">
+        <div class="mouse-icon">
+          <div class="mouse-wheel"></div>
+        </div>
+        <span class="scroll-label">SCROLL TO DISCOVER</span>
+      </a>
+    </section>
+
+    <!-- ABOUT SECTION -->
+    <section id="about" class="about-section section-padding" aria-labelledby="about-title">
+      <div class="section-container">
+        
+        <div class="section-header">
+          <span class="section-subtitle">A LITTLE ABOUT ME</span>
+          <h2 id="about-title" class="section-title">
+            “I care about how things look, how they work, and what happens when they break.”
+          </h2>
+        </div>
+
+        <div class="about-grid">
+          <!-- Text Column -->
+          <div class="about-text-col">
+            <p class="about-lead">
+              I am a developer who bridges creative frontend development, rigorous quality assurance, and modern AI-accelerated workflows.
+            </p>
+            <p class="about-body">
+              A visually stunning interface is only half the battle. If a layout stumbles on an unexpected mobile breakpoint, if an interactive state drops frames, or if edge-case data crashes a view—the user experience is broken.
+            </p>
+            <p class="about-body">
+              My approach blends the precision of <strong>Frontend Engineering</strong> with an instinctive <strong>QA Mindset</strong>: anticipating breakdowns before they happen, stress-testing responsive viewports, and leveraging <strong>AI-assisted tools</strong> to iterate rapidly while maintaining uncompromising code quality and craftsmanship.
+            </p>
+
+            <!-- Three Pillars Cards -->
+            <div class="pillars-container">
+              <div class="pillar-card">
+                <div class="pillar-number">01</div>
+                <div class="pillar-icon">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+                </div>
+                <h3 class="pillar-title">Frontend Craft</h3>
+                <p class="pillar-desc">Semantic HTML5, responsive CSS architecture, modular JavaScript, and fluid GSAP animation orchestrations.</p>
+              </div>
+
+              <div class="pillar-card">
+                <div class="pillar-number">02</div>
+                <div class="pillar-icon">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
+                </div>
+                <h3 class="pillar-title">QA Rigor</h3>
+                <p class="pillar-desc">Systematic viewport testing (320px to 4K), edge-case validation, cross-browser consistency, and bug isolation.</p>
+              </div>
+
+              <div class="pillar-card">
+                <div class="pillar-number">03</div>
+                <div class="pillar-icon">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
+                </div>
+                <h3 class="pillar-title">AI-Assisted Velocity</h3>
+                <p class="pillar-desc">Leveraging prompt engineering and generative workflows to scaffold rapidly, test scenarios, and refine output.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Portrait & Identity Card -->
+          <div class="about-visual-col">
+            <div class="portrait-card">
+              <!-- Visual Portrait / Editorial Placeholder -->
+              <div class="portrait-image-wrapper">
+                <img src="assets/images/bhavani-img.png" alt="Bhavani — Developer Portrait" class="portrait-img">
+              </div>
+
+              <!-- Information Panel -->
+              <div class="portrait-info">
+                <div class="portrait-header">
+                  <div>
+                    <h3 class="portrait-name">Bhavani</h3>
+                    <p class="portrait-role">Frontend Developer • QA Specialist</p>
+                  </div>
+                  <div class="portrait-logo-small">
+                    <img src="assets/images/bhavani-logo.jpg" alt="Logo" class="mini-logo">
+                  </div>
+                </div>
+
+                <div class="portrait-specs">
+                  <div class="spec-row">
+                    <span class="spec-label">Discipline</span>
+                    <span class="spec-value">Web Engineering & Testing</span>
+                  </div>
+                  <div class="spec-row">
+                    <span class="spec-label">Focus</span>
+                    <span class="spec-value">Interactive UI, QA Verification, AI Workflows</span>
+                  </div>
+                  <div class="spec-row">
+                    <span class="spec-label">GitHub</span>
+                    <a href="https://github.com/durgabhavanichniceinteractive-pixel" target="_blank" rel="noopener noreferrer" class="spec-link">@durgabhavanichniceinteractive-pixel</a>
+                  </div>
+                  <div class="spec-row">
+                    <span class="spec-label">Location</span>
+                    <span class="spec-value">Rajamanahendravaram</span>
+                  </div>
+                </div>
+
+                <div class="portrait-quote">
+                  “Code that looks elegant on my machine means nothing until it performs flawlessly in the user's hands.”
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SKILLS SECTION -->
+    <section id="skills" class="skills-section section-padding" aria-labelledby="skills-title">
+      <div class="section-container">
+        
+        <div class="section-header">
+          <span class="section-subtitle">COMPREHENSIVE CAPABILITIES</span>
+          <h2 id="skills-title" class="section-title">Skills & Technical Toolkit</h2>
+          <p class="section-desc">
+            No arbitrary percentage bars. Instead, an interactive overview of real technologies, QA methodologies, and modern AI workflows I use to build robust digital products.
+          </p>
+        </div>
+
+        <!-- Filter Category Tabs -->
+        <div class="skill-category-tabs" role="tablist" aria-label="Skills categories">
+          <button class="skill-tab active" data-filter="all" role="tab" aria-selected="true">All Disciplines</button>
+          <button class="skill-tab" data-filter="frontend" role="tab" aria-selected="false">Frontend Development</button>
+          <button class="skill-tab" data-filter="quality" role="tab" aria-selected="false">Quality & Testing</button>
+          <button class="skill-tab" data-filter="ai" role="tab" aria-selected="false">AI-Assisted Workflows</button>
+          <button class="skill-tab" data-filter="tools" role="tab" aria-selected="false">Tools & Environment</button>
+        </div>
+
+        <!-- Skills Interactive Grid -->
+        <div class="skills-grid" id="skills-grid">
+
+          <!-- FRONTEND CATEGORY -->
+          <div class="skill-card" data-category="frontend">
+            <div class="skill-card-top">
+              <span class="skill-cat-tag">FRONTEND</span>
+              <span class="skill-status-tag">Core</span>
+            </div>
+            <h3 class="skill-name">HTML5</h3>
+            <p class="skill-description">Semantic markup, accessibility standards (a11y), clean document hierarchy, and modern SEO structure.</p>
+            <div class="skill-tags">
+              <span>Semantics</span>
+              <span>A11y</span>
+              <span>SEO</span>
+            </div>
+          </div>
+
+          <div class="skill-card" data-category="frontend">
+            <div class="skill-card-top">
+              <span class="skill-cat-tag">FRONTEND</span>
+              <span class="skill-status-tag">Core</span>
+            </div>
+            <h3 class="skill-name">CSS3</h3>
+            <p class="skill-description">Modern Flexbox, CSS Grid, Custom Properties (variables), fluid clamping, transitions, and keyframe animations.</p>
+            <div class="skill-tags">
+              <span>Grid / Flex</span>
+              <span>Variables</span>
+              <span>Keyframes</span>
+            </div>
+          </div>
+
+          <div class="skill-card" data-category="frontend">
+            <div class="skill-card-top">
+              <span class="skill-cat-tag">FRONTEND</span>
+              <span class="skill-status-tag">Core</span>
+            </div>
+            <h3 class="skill-name">JavaScript</h3>
+            <p class="skill-description">Modern ES6+, asynchronous programming, modular architecture, API consumption, and clean event handling.</p>
+            <div class="skill-tags">
+              <span>ES6+</span>
+              <span>Async/Await</span>
+              <span>Modules</span>
+            </div>
+          </div>
+
+          <div class="skill-card" data-category="frontend">
+            <div class="skill-card-top">
+              <span class="skill-cat-tag">FRONTEND</span>
+              <span class="skill-status-tag">Specialty</span>
+            </div>
+            <h3 class="skill-name">Responsive Web Design</h3>
+            <p class="skill-description">Fluid mobile-first layouts, responsive media, breakpoint strategy across 320px to 4K displays.</p>
+            <div class="skill-tags">
+              <span>Mobile-First</span>
+              <span>Fluid Clamps</span>
+              <span>Breakpoints</span>
+            </div>
+          </div>
+
+          <div class="skill-card" data-category="frontend">
+            <div class="skill-card-top">
+              <span class="skill-cat-tag">FRONTEND</span>
+              <span class="skill-status-tag">Core</span>
+            </div>
+            <h3 class="skill-name">DOM Manipulation</h3>
+            <p class="skill-description">Efficient dynamic updates, event delegation, virtual state syncing, and eliminating layout thrashing.</p>
+            <div class="skill-tags">
+              <span>Event Delegation</span>
+              <span>DOM Lifecycle</span>
+            </div>
+          </div>
+
+          <div class="skill-card" data-category="frontend">
+            <div class="skill-card-top">
+              <span class="skill-cat-tag">FRONTEND</span>
+              <span class="skill-status-tag">Animation</span>
+            </div>
+            <h3 class="skill-name">GSAP</h3>
+            <p class="skill-description">High-performance timeline choreography, tween sequences, micro-interactions, and 60 FPS performance.</p>
+            <div class="skill-tags">
+              <span>Timelines</span>
+              <span>Tweens</span>
+              <span>Performance</span>
+            </div>
+          </div>
+
+          <div class="skill-card" data-category="frontend">
+            <div class="skill-card-top">
+              <span class="skill-cat-tag">FRONTEND</span>
+              <span class="skill-status-tag">Animation</span>
+            </div>
+            <h3 class="skill-name">ScrollTrigger</h3>
+            <p class="skill-description">Scrubbed scroll interactions, pinned stage transitions, progress bars, and coordinated parallax reveals.</p>
+            <div class="skill-tags">
+              <span>Scrubbing</span>
+              <span>Pinning</span>
+              <span>Parallax</span>
+            </div>
+          </div>
+
+          <!-- QUALITY / QA CATEGORY -->
+          <div class="skill-card" data-category="quality">
+            <div class="skill-card-top">
+              <span class="skill-cat-tag">QUALITY</span>
+              <span class="skill-status-tag">Methodology</span>
+            </div>
+            <h3 class="skill-name">Functional Testing</h3>
+            <p class="skill-description">Validating user journeys, input sanitization, dynamic state flows, and verifying expected system behaviors.</p>
+            <div class="skill-tags">
+              <span>User Flows</span>
+              <span>Validation</span>
+              <span>States</span>
+            </div>
+          </div>
+
+          <div class="skill-card" data-category="quality">
+            <div class="skill-card-top">
+              <span class="skill-cat-tag">QUALITY</span>
+              <span class="skill-status-tag">Visual QA</span>
+            </div>
+            <h3 class="skill-name">UI Testing</h3>
+            <p class="skill-description">Inspecting visual hierarchy, font rendering, alignment, hover states, contrast ratios, and element spacing.</p>
+            <div class="skill-tags">
+              <span>Pixel Precision</span>
+              <span>Contrast</span>
+              <span>Hierarchy</span>
+            </div>
+          </div>
+
+          <div class="skill-card" data-category="quality">
+            <div class="skill-card-top">
+              <span class="skill-cat-tag">QUALITY</span>
+              <span class="skill-status-tag">Device QA</span>
+            </div>
+            <h3 class="skill-name">Responsive Testing</h3>
+            <p class="skill-description">Auditing layouts across iOS, Android, tablets, foldables, and wide desktops for zero unwanted overflow.</p>
+            <div class="skill-tags">
+              <span>No-Overflow</span>
+              <span>Touch Targets</span>
+              <span>Viewports</span>
+            </div>
+          </div>
+
+          <div class="skill-card" data-category="quality">
+            <div class="skill-card-top">
+              <span class="skill-cat-tag">QUALITY</span>
+              <span class="skill-status-tag">Compatibility</span>
+            </div>
+            <h3 class="skill-name">Cross-Browser Testing</h3>
+            <p class="skill-description">Verifying rendering consistency and engine quirks across Chrome (Blink), Safari (WebKit), Firefox (Gecko), and Edge.</p>
+            <div class="skill-tags">
+              <span>Chrome</span>
+              <span>Safari</span>
+              <span>Firefox</span>
+              <span>Edge</span>
+            </div>
+          </div>
+
+          <div class="skill-card" data-category="quality">
+            <div class="skill-card-top">
+              <span class="skill-cat-tag">QUALITY</span>
+              <span class="skill-status-tag">Investigation</span>
+            </div>
+            <h3 class="skill-name">Bug Detection & Debugging</h3>
+            <p class="skill-description">Isolating root causes with console diagnostics, network monitoring, call stack analysis, and breakpoint tracing.</p>
+            <div class="skill-tags">
+              <span>Root Cause</span>
+              <span>Stack Traces</span>
+              <span>Network</span>
+            </div>
+          </div>
+
+          <div class="skill-card" data-category="quality">
+            <div class="skill-card-top">
+              <span class="skill-cat-tag">QUALITY</span>
+              <span class="skill-status-tag">Stability</span>
+            </div>
+            <h3 class="skill-name">Regression Testing</h3>
+            <p class="skill-description">Ensuring new features, stylesheet edits, or refactors never reintroduce legacy bugs or degrade existing user flows.</p>
+            <div class="skill-tags">
+              <span>Zero Regressions</span>
+              <span>Smoke Tests</span>
+            </div>
+          </div>
+
+          <!-- AI CATEGORY -->
+          <div class="skill-card" data-category="ai">
+            <div class="skill-card-top">
+              <span class="skill-cat-tag">AI</span>
+              <span class="skill-status-tag">Workflow</span>
+            </div>
+            <h3 class="skill-name">AI-Assisted Development</h3>
+            <p class="skill-description">Accelerating boilerplate generation, prototype exploration, and component scaffolding using pair-programming AI tools.</p>
+            <div class="skill-tags">
+              <span>Rapid Scaffolding</span>
+              <span>Pair-Dev</span>
+            </div>
+          </div>
+
+          <div class="skill-card" data-category="ai">
+            <div class="skill-card-top">
+              <span class="skill-cat-tag">AI</span>
+              <span class="skill-status-tag">Engineering</span>
+            </div>
+            <h3 class="skill-name">Prompt Engineering</h3>
+            <p class="skill-description">Crafting structured system instructions, few-shot prompting patterns, and deterministic technical code specifications.</p>
+            <div class="skill-tags">
+              <span>System Prompts</span>
+              <span>Deterministic Output</span>
+            </div>
+          </div>
+
+          <div class="skill-card" data-category="ai">
+            <div class="skill-card-top">
+              <span class="skill-cat-tag">AI</span>
+              <span class="skill-status-tag">Exploration</span>
+            </div>
+            <h3 class="skill-name">Generative AI Workflows</h3>
+            <p class="skill-description">Integrating LLM reasoning for synthetic test data generation, edge-case generation, and documentation drafting.</p>
+            <div class="skill-tags">
+              <span>Synthetic Tests</span>
+              <span>Data Mocks</span>
+            </div>
+          </div>
+
+          <div class="skill-card" data-category="ai">
+            <div class="skill-card-top">
+              <span class="skill-cat-tag">AI</span>
+              <span class="skill-status-tag">Verification</span>
+            </div>
+            <h3 class="skill-name">AI Testing & Evaluation</h3>
+            <p class="skill-description">Reviewing AI-generated code for security vulnerabilities, hallucinated APIs, accessibility gaps, and optimization flaws.</p>
+            <div class="skill-tags">
+              <span>Code Review</span>
+              <span>A11y Audit</span>
+              <span>Zero Hallucination</span>
+            </div>
+          </div>
+
+          <!-- TOOLS CATEGORY -->
+          <div class="skill-card" data-category="tools">
+            <div class="skill-card-top">
+              <span class="skill-cat-tag">TOOLS</span>
+              <span class="skill-status-tag">VCS</span>
+            </div>
+            <h3 class="skill-name">Git & GitHub</h3>
+            <p class="skill-description">Version control hygiene, branch workflows, descriptive commits, pull request management, and repository structure.</p>
+            <div class="skill-tags">
+              <span>Branching</span>
+              <span>PR Review</span>
+              <span>Clean Commits</span>
+            </div>
+          </div>
+
+          <div class="skill-card" data-category="tools">
+            <div class="skill-card-top">
+              <span class="skill-cat-tag">TOOLS</span>
+              <span class="skill-status-tag">IDE</span>
+            </div>
+            <h3 class="skill-name">VS Code</h3>
+            <p class="skill-description">Optimized development environment with linting configurations, debugger hooks, snippet expansions, and extensions.</p>
+            <div class="skill-tags">
+              <span>Workspaces</span>
+              <span>Linting</span>
+              <span>Extensions</span>
+            </div>
+          </div>
+
+          <div class="skill-card" data-category="tools">
+            <div class="skill-card-top">
+              <span class="skill-cat-tag">TOOLS</span>
+              <span class="skill-status-tag">Diagnostics</span>
+            </div>
+            <h3 class="skill-name">Browser DevTools</h3>
+            <p class="skill-description">Performance profiling, Lighthouse audits, memory leak detection, network throttling, and CSS grid inspectors.</p>
+            <div class="skill-tags">
+              <span>Lighthouse</span>
+              <span>Profiling</span>
+              <span>Network Throttle</span>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- FEATURED WORK SECTION -->
+    <section id="work" class="work-section section-padding" aria-labelledby="work-title">
+      <div class="section-container">
+        
+        <div class="section-header">
+          <span class="section-subtitle">SELECTED WORK</span>
+          <h2 id="work-title" class="section-title">Websites I've Built, Tested & Refined</h2>
+          <p class="section-desc">
+            A curated selection of responsive digital experiences demonstrating frontend engineering, thorough testing, and AI-assisted workflows.
+          </p>
+        </div>
+
+        <div class="projects-list">
+
+          <!-- ==============================================
+               PROJECT 01: NEXA AI LAB (Actual Project)
+               ============================================== -->
+          <article class="project-card reveal-project" id="project-01">
+            <div class="project-grid">
+              
+              <!-- Project Visual Showcase -->
+              <div class="project-media-col">
+                <div class="project-browser-frame">
+                  <div class="browser-frame-bar">
+                    <div class="frame-dots">
+                      <span class="dot dot-close"></span>
+                      <span class="dot dot-minimize"></span>
+                      <span class="dot dot-maximize"></span>
+                    </div>
+                    <span class="frame-url">nexa-ai-lab.dev</span>
+                    <span class="frame-badge">Live Experience</span>
+                  </div>
+                  
+                  <div class="project-img-wrapper" data-cursor="VIEW">
+                    <img 
+                      src="assets/projects/Nexa-AI-Lab.png" 
+                      alt="Nexa AI Lab Project Showcase" 
+                      class="project-img" 
+                      loading="lazy"
+                    >
+                  </div>
+                </div>
+              </div>
+                  
+              <!-- Project Details -->
+              <div class="project-info-col">
+                <div class="project-meta-header">
+                  <span class="project-index">01 / FEATURED</span>
+                  <span class="project-category">AI / Interactive Web Experience</span>
+                </div>
+
+                <h3 class="project-name">Nexa AI Lab</h3>
+
+                <p class="project-description">
+                  An interactive AI-focused web experience built with responsive frontend development, animations and an AI-assisted development workflow. Designed for testing AI prompts, visualizing architectural parameters, and displaying real-time telemetry metrics.
+                </p>
+
+                <!-- Project Highlights / Features -->
+                <div class="project-features-list">
+                  <div class="feature-bullet">
+                    <span class="bullet-icon">&#10003;</span>
+                    <span>Interactive Neural Prompt Playground with dynamic parameters</span>
+                  </div>
+                  <div class="feature-bullet">
+                    <span class="bullet-icon">&#10003;</span>
+                    <span>Real-time performance telemetry with sub-millisecond metric updates</span>
+                  </div>
+                  <div class="feature-bullet">
+                    <span class="bullet-icon">&#10003;</span>
+                    <span>Full responsive breakdown tested across mobile, tablet & desktop</span>
+                  </div>
+                </div>
+
+                <!-- Tech Stack Pills -->
+                <div class="project-tech-stack">
+                  <span class="tech-pill">HTML5</span>
+                  <span class="tech-pill">CSS3</span>
+                  <span class="tech-pill">JavaScript</span>
+                  <span class="tech-pill">Responsive Design</span>
+                  <span class="tech-pill">AI-Assisted Dev</span>
+                  <span class="tech-pill">GSAP</span>
+                </div>
+
+                <!-- Action Links -->
+                <div class="project-actions">
+                  <a href="https://github.com/durgabhavanichniceinteractive-pixel/Nexa-Ai-Lab" target="_blank" rel="noopener noreferrer" class="btn btn-outline magnet-btn">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                    <span>View Repository</span>
+                  </a>
+                  <button class="btn btn-secondary open-modal-btn" data-project="01" data-cursor="OPEN">
+                    <span>Inspect Specs & QA Log</span>
+                  </button>
+                </div>
+
+                <div class="project-role-note">
+                  <strong>Role:</strong> Frontend Development, UI Engineering, QA Verification & AI-Assisted Architecture.
+                </div>
+              </div>
+
+            </div>
+          </article>
+
+          <!-- ==============================================
+               PROJECT 02: EDITABLE PROJECT SLOT
+               [EDIT THIS: Bhavani can replace details and screenshot]
+               Image path: /assets/projects/project-02.png
+               ============================================== -->
+          <article class="project-card reveal-project" id="project-02">
+            <div class="project-grid">
+              
+              <!-- Project Visual Showcase -->
+              <div class="project-media-col">
+                <div class="project-browser-frame">
+                  <div class="browser-frame-bar">
+                    <div class="frame-dots">
+                      <span class="dot dot-close"></span>
+                      <span class="dot dot-minimize"></span>
+                      <span class="dot dot-maximize"></span>
+                    </div>
+                    <span class="frame-url">Human.Exe.dev</span>
+                    <span class="frame-badge">Live Experience</span>
+                  </div>
+                  
+                  <div class="project-img-wrapper" data-cursor="VIEW">
+                    <!-- Bhavani can replace this file at assets/projects/project-02.png -->
+                    <img 
+                      src="assets/projects/Human.Exe-img.png" 
+                      alt="Human.Exe-img" 
+                      class="project-img" 
+                      loading="lazy">
+                  </div>
+                </div>
+              </div>
+
+              <!-- Project Details -->
+              <div class="project-info-col">
+                <div class="project-meta-header">
+                  <span class="project-index">02 / FEATURED</span>
+                  <span class="project-category">Web Experience</span>
+                </div>
+
+                <h3 class="project-name">HUMAN VS MACHINE</h3>
+
+                <p class="project-description">
+                  Designed and built HUMAN × MACHINE, an interactive scroll-based website comparing how humans and machines think, see, feel, learn, create and move. It combines visual storytelling with a clear message: the future is not about replacement, but about possibility.
+                </p>
+
+                <!-- Project Highlights / Features -->
+                <div class="project-features-list">
+                  <div class="feature-bullet">
+                    <span class="bullet-icon">&#10003;</span>
+                    <span>Six scroll-based sections (Think, See, Feel, Learn, Create, Move) with side-by-side Human vs Machine comparisons</span>
+                  </div>
+                  <div class="feature-bullet">
+                    <span class="bullet-icon">&#10003;</span>
+                    <span>Hero intro that invites users to "break apart" Human and Machine as they scroll</span>
+                  </div>
+                  <div class="feature-bullet">
+                    <span class="bullet-icon">&#10003;</span>
+                    <span>Sticky section navigation with a responsive, mobile-friendly layout</span>
+                  </div>
+                </div>
+
+                <!-- Tech Stack Pills -->
+                <div class="project-tech-stack">
+                  <span class="tech-pill">HTML5</span>
+                  <span class="tech-pill">CSS3</span>
+                  <span class="tech-pill">JavaScript</span>
+                  <span class="tech-pill">Responsive Design</span>
+                  <span class="tech-pill">GSAP</span>
+                </div>
+
+                <!-- Action Links -->
+                <div class="project-actions">
+                  <a href="https://github.com/durgabhavanichniceinteractive-pixel" target="_blank" rel="noopener noreferrer" class="btn btn-outline magnet-btn">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                    <span>View Repository</span>
+                  </a>
+                  <button class="btn btn-secondary open-modal-btn" data-project="02" data-cursor="OPEN">
+                    <span>Inspect Specs</span>
+                  </button>
+                </div>
+
+                <div class="project-role-note">
+                  <strong>Role:</strong> Frontend Development, Scroll Interaction Design, Visual Storytelling & Concept Development.
+                </div>
+              </div>
+
+            </div>
+          </article>
+
+          <!-- ==============================================
+               PROJECT 03: EDITABLE PROJECT SLOT
+               [EDIT THIS: Bhavani can replace details and screenshot]
+               Image path: /assets/projects/project-03.png
+               ============================================== -->
+          <article class="project-card reveal-project" id="project-03">
+            <div class="project-grid">
+              
+              <!-- Project Visual Showcase -->
+              <div class="project-media-col">
+                <div class="project-browser-frame">
+                  <div class="browser-frame-bar">
+                    <div class="frame-dots">
+                      <span class="dot dot-close"></span>
+                      <span class="dot dot-minimize"></span>
+                      <span class="dot dot-maximize"></span>
+                    </div>
+                    <span class="frame-url">INSIDE THE JOURNEY.dev]</span>
+                    <span class="frame-badge">Live Experience</span>
+                  </div>
+                  
+                  <div class="project-img-wrapper" data-cursor="VIEW">
+                    <!-- Bhavani can replace this file at assets/projects/project-03.png -->
+                    <img 
+                      src="assets/projects/Inside-the-Journey-img.png" 
+                      alt="Inside the Journey-img" 
+                      class="project-img" 
+                      loading="lazy"
+                    >
+                </div>
+             
+              </div>
+                  </div>
+              <!-- Project Details -->
+              <div class="project-info-col">
+                <div class="project-meta-header">
+                  <span class="project-index">03 / FEATURED</span>
+                  <span class="project-category">Performance & QA Dashboard</span>
+                </div>
+
+                <h3 class="project-name">INSIDE THE JOURNEY</h3>
+
+                <p class="project-description">
+                  An interactive, scroll-based visualization that explains my Chiari I Malformation diagnosis through MRI-style visuals and simplified anatomy. It walks through eight chapters, from the first finding to surgery and recovery, to turn a complex medical story into something easy to understand.
+                </p>
+
+                <!-- Project Highlights / Features -->
+                <div class="project-features-list">
+                  <div class="feature-bullet">
+                    <span class="bullet-icon">&#10003;</span>
+                    <span>Eight-chapter scroll journey (Intro, Anatomy, MRI, Finding, Brainstem, Surgery, Recovery, Reflection)</span>
+                  </div>
+                  <div class="feature-bullet">
+                    <span class="bullet-icon">&#10003;</span>
+                    <span>Animated MRI-style rendering that turns a documented finding (about 11.9 mm tonsillar descent) into a simple anatomical visualization</span>
+                  </div>
+                  <div class="feature-bullet">
+                    <span class="bullet-icon">&#10003;</span>
+                    <span>Clearly labeled as conceptual and educational, with honest notes like "not a reconstruction of my scans" and "not to scale"</span>
+                  </div>
+                </div>
+
+                <!-- Tech Stack Pills -->
+                <div class="project-tech-stack">
+                  <span class="tech-pill">HTML5</span>
+                  <span class="tech-pill">CSS3</span>
+                  <span class="tech-pill">JavaScript</span>
+                  <span class="tech-pill">Responsive Design</span>
+                  <span class="tech-pill">Scroll Animation</span>
+                </div>
+
+                <!-- Action Links -->
+                <div class="project-actions">
+                  <a href="https://github.com/durgabhavanichniceinteractive-pixel" target="_blank" rel="noopener noreferrer" class="btn btn-outline magnet-btn">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                    <span>VIEW REPOSITORY</span>
+                  </a>
+                  <button class="btn btn-secondary open-modal-btn" data-project="03" data-cursor="OPEN">
+                    <span>VIEW LIVE SITE</span>
+                  </button>
+                </div>
+
+                <div class="project-role-note">
+                  <strong>Role:</strong> Frontend Development, Data Visualization, Medical Content Research & Visual Storytelling.
+                </div>
+              </div>
+
+            </div>
+          </article>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- HOW I WORK SECTION (MY APPROACH) -->
+    <section id="approach" class="approach-section section-padding" aria-labelledby="approach-title">
+      <div class="section-container">
+        
+        <div class="section-header">
+          <span class="section-subtitle">MY APPROACH</span>
+          <h2 id="approach-title" class="section-title">How I Work</h2>
+          <p class="section-desc">
+            A disciplined four-phase engineering methodology balancing creative vision with rigorous testing standards.
+          </p>
+        </div>
+
+        <!-- Horizontal Timeline Stages -->
+        <div class="timeline-stages">
+          
+          <div class="stage-card">
+            <div class="stage-header">
+              <span class="stage-step">01</span>
+              <span class="stage-dot"></span>
+            </div>
+            <h3 class="stage-title">UNDERSTAND</h3>
+            <p class="stage-desc">
+              Deconstruct the core requirements, audience mental models, interaction goals, and visual aesthetic. Clarify constraints before writing a single line of code.
+            </p>
+            <ul class="stage-checks">
+              <li>UX & content hierarchy analysis</li>
+              <li>Design system token mapping</li>
+              <li>Edge-case anticipation</li>
+            </ul>
+          </div>
+
+          <div class="stage-card">
+            <div class="stage-header">
+              <span class="stage-step">02</span>
+              <span class="stage-dot"></span>
+            </div>
+            <h3 class="stage-title">BUILD</h3>
+            <p class="stage-desc">
+              Implement semantic HTML5, responsive CSS architectures, and modular JavaScript. Leverage AI pair-programming for fast scaffolding without compromising standards.
+            </p>
+            <ul class="stage-checks">
+              <li>Clean, semantic markup</li>
+              <li>Fluid CSS variables & layout grids</li>
+              <li>Performant micro-animations</li>
+            </ul>
+          </div>
+
+          <div class="stage-card">
+            <div class="stage-header">
+              <span class="stage-step">03</span>
+              <span class="stage-dot"></span>
+            </div>
+            <h3 class="stage-title">TEST</h3>
+            <p class="stage-desc">
+              Execute rigorous QA passes across actual viewport ranges (320px to ultra-wide), inspect browser compatibility, stress-test inputs, and isolate unexpected regressions.
+            </p>
+            <ul class="stage-checks">
+              <li>Viewport stress testing</li>
+              <li>Cross-browser engine checks</li>
+              <li>Functional flow verification</li>
+            </ul>
+          </div>
+
+          <div class="stage-card">
+            <div class="stage-header">
+              <span class="stage-step">04</span>
+              <span class="stage-dot"></span>
+            </div>
+            <h3 class="stage-title">REFINE</h3>
+            <p class="stage-desc">
+              Optimize paint performance, verify zero layout shifts (CLS), audit accessibility (WCAG), and polish micro-details to ensure a truly luxurious final feel.
+            </p>
+            <ul class="stage-checks">
+              <li>Core Web Vitals tuning</li>
+              <li>Keyboard & a11y polish</li>
+              <li>Production deployment review</li>
+            </ul>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- AI-ASSISTED WORKFLOW SECTION -->
+    <section id="ai-workflow" class="ai-section section-padding" aria-labelledby="ai-title">
+      <div class="section-container">
+        
+        <div class="section-header">
+          <span class="section-subtitle">ENGINEERING ACCELERATION</span>
+          <h2 id="ai-title" class="section-title">Built with AI. Refined by Me.</h2>
+          <p class="section-desc">
+            AI doesn't build the product—it supercharges exploration. Human engineering drives architecture, QA rigor, debugging, and aesthetic judgment.
+          </p>
+        </div>
+
+        <!-- Interactive AI Pipeline Diagram -->
+        <div class="pipeline-wrapper">
+          <div class="pipeline-track" role="list" aria-label="AI Assisted Workflow Stages">
+            
+            <div class="pipeline-node" role="listitem">
+              <div class="node-number">01</div>
+              <div class="node-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a7 7 0 0 1 7 7c0 2.38-1.19 4.47-3 5.74V17a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1v-2.26C6.19 13.47 5 11.38 5 9a7 7 0 0 1 7-7z"/><path d="M9 21h6"/></svg>
+              </div>
+              <span class="node-title">Idea</span>
+              <span class="node-caption">Concept & Scope</span>
+            </div>
+
+            <div class="pipeline-connector"><span>&rarr;</span></div>
+
+            <div class="pipeline-node" role="listitem">
+              <div class="node-number">02</div>
+              <div class="node-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>
+              </div>
+              <span class="node-title">Prompt</span>
+              <span class="node-caption">Structured Context</span>
+            </div>
+
+            <div class="pipeline-connector"><span>&rarr;</span></div>
+
+            <div class="pipeline-node" role="listitem">
+              <div class="node-number">03</div>
+              <div class="node-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+              </div>
+              <span class="node-title">Generate</span>
+              <span class="node-caption">Raw Scaffolding</span>
+            </div>
+
+            <div class="pipeline-connector"><span>&rarr;</span></div>
+
+            <div class="pipeline-node highlight-node" role="listitem">
+              <div class="node-number">04</div>
+              <div class="node-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+              </div>
+              <span class="node-title">Review</span>
+              <span class="node-caption">Architectural Audit</span>
+            </div>
+
+            <div class="pipeline-connector"><span>&rarr;</span></div>
+
+            <div class="pipeline-node highlight-node" role="listitem">
+              <div class="node-number">05</div>
+              <div class="node-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+              </div>
+              <span class="node-title">Code</span>
+              <span class="node-caption">Manual Implementation</span>
+            </div>
+
+            <div class="pipeline-connector"><span>&rarr;</span></div>
+
+            <div class="pipeline-node highlight-node" role="listitem">
+              <div class="node-number">06</div>
+              <div class="node-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="9" y1="15" x2="15" y2="15"/></svg>
+              </div>
+              <span class="node-title">Test</span>
+              <span class="node-caption">Edge-Case QA</span>
+            </div>
+
+            <div class="pipeline-connector"><span>&rarr;</span></div>
+
+            <div class="pipeline-node highlight-node" role="listitem">
+              <div class="node-number">07</div>
+              <div class="node-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+              </div>
+              <span class="node-title">Refine</span>
+              <span class="node-caption">Human Polish & Ship</span>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Comparative Cards -->
+        <div class="ai-philosophy-grid">
+          <div class="philosophy-card">
+            <div class="philosophy-badge ai-badge">The AI Multiplier</div>
+            <h3>What AI Provides</h3>
+            <p>
+              Rapid generation of boilerplate patterns, syntax recall, draft test scenarios, synthetic seed datasets, and creative design exploration variations.
+            </p>
+          </div>
+
+          <div class="philosophy-card highlight-card">
+            <div class="philosophy-badge human-badge">The Developer's Eye</div>
+            <h3>What Bhavani Delivers</h3>
+            <p>
+              Critical architectural decisions, layout stability, accessibility compliance, authentic responsive testing across actual viewports, elimination of phantom code, and visual perfection.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- QA MINDSET & LIVE VIEWPORT LAB SECTION -->
+    <section id="qa-lab" class="qa-section section-padding" aria-labelledby="qa-title">
+      <div class="section-container">
+        
+        <div class="section-header">
+          <span class="section-subtitle">BEYOND THE PIXELS</span>
+          <h2 id="qa-title" class="section-title">
+            “A website isn't finished when it looks right.<br>It's finished when it behaves right.”
+          </h2>
+          <p class="section-desc">
+            Experience my QA testing mindset interactively. Toggle between screen viewports below to observe live layout restructuring, navigation transitions, and defensive styling in action.
+          </p>
+        </div>
+
+        <!-- Interactive QA Simulator Container -->
+        <div class="qa-simulator-wrap">
+          
+          <!-- Simulator Control Bar -->
+          <div class="simulator-controls">
+            <div class="controls-label">
+              <span class="control-icon">&#9658;</span>
+              <span>LIVE VIEWPORT SIMULATOR</span>
+            </div>
+
+            <!-- Viewport Preset Buttons -->
+            <div class="viewport-buttons" role="group" aria-label="Simulate Viewport Sizes">
+              <button class="vp-btn active" data-width="100%" data-mode="desktop" aria-pressed="true">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+                <span>Desktop (1280px)</span>
+              </button>
+              <button class="vp-btn" data-width="768px" data-mode="tablet" aria-pressed="false">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="2" width="16" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+                <span>Tablet (768px)</span>
+              </button>
+              <button class="vp-btn" data-width="375px" data-mode="mobile" aria-pressed="false">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+                <span>Mobile (375px)</span>
+              </button>
+            </div>
+
+            <div class="current-width-display">
+              <span class="live-width-text" id="live-viewport-label">100% — Full Desktop</span>
+            </div>
+          </div>
+
+          <!-- Simulator Screen Area -->
+          <div class="simulator-stage">
+            <div class="simulator-frame" id="sim-frame" style="width: 100%;">
+              
+              <!-- Inner Simulated Web App -->
+              <div class="sim-inner-app" id="sim-app">
+                <div class="sim-app-header">
+                  <div class="sim-brand">
+                    <span class="sim-brand-dot"></span>
+                    <span class="sim-brand-text">Bhavani.QA_Lab</span>
+                  </div>
+                  <div class="sim-nav-desktop">
+                    <span>Overview</span>
+                    <span>Test Cases</span>
+                    <span>Breakpoints</span>
+                    <span>Telemetry</span>
+                  </div>
+                  <div class="sim-nav-mobile-btn">
+                    <span>&#9776; Menu</span>
+                  </div>
+                </div>
+
+                <div class="sim-app-body">
+                  <div class="sim-hero">
+                    <div class="sim-pill">Status: 200 OK • All Responsive Checks Passed</div>
+                    <h4>Defensive Frontend Architecture</h4>
+                    <p>Watching this mini-page adapt reveals how fluid clamping, flex wrapping, and responsive media prevent overflow bugs.</p>
+                  </div>
+
+                  <div class="sim-grid">
+                    <div class="sim-card">
+                      <div class="sim-card-title">Viewport Adaptability</div>
+                      <p>Elements wrap dynamically without clipped text or broken layout bounds.</p>
+                      <div class="sim-check-tag">&#10004; Passed</div>
+                    </div>
+                    <div class="sim-card">
+                      <div class="sim-card-title">Touch Targets</div>
+                      <p>Interactive hit-areas scale up to comfortable 44px+ touch sizes on mobile.</p>
+                      <div class="sim-check-tag">&#10004; Verified</div>
+                    </div>
+                    <div class="sim-card">
+                      <div class="sim-card-title">Zero Layout Shift</div>
+                      <p>CLS strictly kept below 0.05 by reserving aspect ratio dimensions.</p>
+                      <div class="sim-check-tag">&#10004; 0.01 CLS</div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="sim-app-footer">
+                  <span>QA Telemetry: 0 Overflows • 0 Console Errors • 60 FPS</span>
+                  <span>Tested by Bhavani</span>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Testing Scenarios List -->
+          <div class="qa-scenarios-row">
+            <div class="scenario-item">
+              <span class="scenario-icon">&#10003;</span>
+              <div>
+                <strong>Cross-Device Matrix:</strong> Audited on 1920px, 1440px, 1024px, 768px, 480px, 375px, and 320px.
+              </div>
+            </div>
+            <div class="scenario-item">
+              <span class="scenario-icon">&#10003;</span>
+              <div>
+                <strong>Engine Consistency:</strong> Checked on Chromium, Gecko (Firefox), and WebKit (Safari).
+              </div>
+            </div>
+            <div class="scenario-item">
+              <span class="scenario-icon">&#10003;</span>
+              <div>
+                <strong>Edge Cases:</strong> Tested with extreme text lengths, missing images, slow network throttles, and dark mode toggles.
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- CURRENTLY EXPLORING SECTION -->
+    <section id="exploring" class="exploring-section section-padding" aria-labelledby="exploring-title">
+      <div class="section-container">
+        
+        <div class="section-header">
+          <span class="section-subtitle">CONTINUOUS GROWTH</span>
+          <h2 id="exploring-title" class="section-title">Currently Exploring</h2>
+          <p class="section-desc">
+            Technologies, frameworks, and testing methodologies I am actively studying, experimenting with, and incorporating into my projects.
+          </p>
+        </div>
+
+        <div class="exploring-grid">
+          
+          <div class="exploring-card">
+            <div class="exploring-status-row">
+              <span class="exploring-category">DEEP DIVE</span>
+              <span class="exploring-tag in-progress">In Active Practice</span>
+            </div>
+            <h3 class="exploring-title">Advanced JavaScript & DOM Performance</h3>
+            <p class="exploring-desc">
+              Diving deep into the event loop, microtask queues, memory profiling, Web Workers for off-main-thread compute, and optimizing render passes.
+            </p>
+            <div class="exploring-topics">
+              <span>Event Loop</span>
+              <span>Memory Profiling</span>
+              <span>Web Workers</span>
+            </div>
+          </div>
+
+          <div class="exploring-card">
+            <div class="exploring-status-row">
+              <span class="exploring-category">AI SYSTEMS</span>
+              <span class="exploring-tag experimenting">Experimenting</span>
+            </div>
+            <h3 class="exploring-title">AI Testing & Evaluation</h3>
+            <p class="exploring-desc">
+              Evaluating output determinism, hallucination bounds, automated prompt regression test suites, and structured JSON schema validations.
+            </p>
+            <div class="exploring-topics">
+              <span>Eval Harnesses</span>
+              <span>Schema Guards</span>
+              <span>Prompt Regression</span>
+            </div>
+          </div>
+
+          <div class="exploring-card">
+            <div class="exploring-status-row">
+              <span class="exploring-category">QA AUTOMATION</span>
+              <span class="exploring-tag in-progress">Active Study</span>
+            </div>
+            <h3 class="exploring-title">End-to-End Test Automation</h3>
+            <p class="exploring-desc">
+              Building automated smoke tests, visual regression baselines, and CI/CD testing pipelines with modern automation frameworks like Playwright.
+            </p>
+            <div class="exploring-topics">
+              <span>Playwright</span>
+              <span>Visual Regression</span>
+              <span>CI Workflows</span>
+            </div>
+          </div>
+
+          <div class="exploring-card">
+            <div class="exploring-status-row">
+              <span class="exploring-category">INTERACTION</span>
+              <span class="exploring-tag integrating">Integrating</span>
+            </div>
+            <h3 class="exploring-title">Advanced Frontend Animation Choreography</h3>
+            <p class="exploring-desc">
+              Mastering complex GSAP timeline synchronizations, SVG morphing paths, dynamic scroll velocity triggers, and canvas particle accents.
+            </p>
+            <div class="exploring-topics">
+              <span>GSAP Timelines</span>
+              <span>SVG Morph</span>
+              <span>Micro-Interactions</span>
+            </div>
+          </div>
+
+          <div class="exploring-card">
+            <div class="exploring-status-row">
+              <span class="exploring-category">TOOLING</span>
+              <span class="exploring-tag in-progress">Active Practice</span>
+            </div>
+            <h3 class="exploring-title">Modern AI-Assisted Workflows</h3>
+            <p class="exploring-desc">
+              Fine-tuning developer velocity through agentic coding loops, repository context indexing, and automated PR review workflows.
+            </p>
+            <div class="exploring-topics">
+              <span>Context Engineering</span>
+              <span>Autonomous Agents</span>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- EXPERIENCE / JOURNEY SECTION (EDITABLE PLACEHOLDER) -->
+    <section id="journey" class="journey-section section-padding" aria-labelledby="journey-title">
+      <div class="section-container">
+        
+        <div class="section-header">
+          <span class="section-subtitle">BACKGROUND & MILESTONES</span>
+          <h2 id="journey-title" class="section-title">My Journey</h2>
+          <p class="section-desc">
+            A milestone timeline of development, testing engagements, and technical milestones.
+            <!-- <span class="editable-hint">[EDIT THIS: Bhavani can easily replace or expand these entries]</span> -->
+          </p>
+        </div>
+
+        <div class="timeline-container">
+          
+          <!-- Milestone 1 -->
+          <div class="timeline-entry">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <div class="timeline-badge-row">
+                <span class="timeline-role">Web Developer & QA Tester</span>
+                <span class="timeline-period">[ 2026 – PRESENT]</span>
+              </div>
+              <h3 class="timeline-company">Nice Interactive</h3>
+              <p class="timeline-text">
+               Back in web development with a QA mindset. I build responsive, interactive web experiences, test them for quality across devices, and use AI-assisted tools to speed up development while keeping control of the concept, content and final output.
+              </p>
+              <div class="timeline-tags">
+                <span>Frontend Development</span>
+                <span>AI-Assisted Development</span>
+                <span>QA Verification</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Milestone 2 -->
+          <div class="timeline-entry">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <div class="timeline-badge-row">
+                <span class="timeline-role">QA Tester</span>
+                <span class="timeline-period">[2026 – 2026,sep]</span>
+              </div>
+              <h3 class="timeline-company">Nice Interactive</h3>
+              <p class="timeline-text">
+                Tested web applications for bugs, responsiveness and usability, and reported issues clearly to developers. This role built the testing mindset I now apply to everything I build.
+              </p>
+              <div class="timeline-tags">
+                <span>QA Testing</span>
+                <span>Bug Reporting</span>
+                <span>Responsive Testing</span>
+              </div>
+            </div>
+          </div>
+
+ <!-- Milestone 3 -->
+          <div class="timeline-entry">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <div class="timeline-badge-row">
+                <span class="timeline-role">Web Developer</span>
+                <span class="timeline-period">[ 2025 – 2026]</span>
+              </div>
+              <h3 class="timeline-company">Nice Interactive</h3>
+              <p class="timeline-text">
+               Started my career building and maintaining websites with HTML, CSS and JavaScript. This is where I learned how the web works and what makes a good user experience.
+              </p>
+              <div class="timeline-tags">
+                <span>HTML5</span>
+                <span>CSS3</span>
+                <span>JavaScript</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section id="contact" class="contact-section section-padding" aria-labelledby="contact-title">
+      <div class="section-container">
+        
+        <div class="contact-card">
+          <div class="contact-content">
+            <span class="section-subtitle gold-text">LET'S CONNECT</span>
+            <h2 id="contact-title" class="contact-headline">
+              LET'S BUILD SOMETHING GREAT.
+            </h2>
+            <p class="contact-subtext">
+              Have an idea, project or opportunity? Whether you're looking for a dedicated frontend developer, a detail-oriented QA specialist, or a developer leveraging AI workflows—let's talk.
+            </p>
+
+            <!-- Magnetic Action Buttons -->
+            <div class="contact-actions">
+              <a href="mailto:durgabhavanich.niceinteractive@gmail.com" class="btn btn-primary magnet-btn" data-cursor="EMAIL">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                <span>EMAIL ME</span>
+              </a>
+
+              <a href="https://www.linkedin.com/in/durga-bhavani-chilakamarthi-b5a062288/" target="_blank" rel="noopener noreferrer" class="btn btn-outline magnet-btn" data-cursor="OPEN">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                <span>LINKEDIN</span>
+              </a>
+
+              <a href="https://github.com/durgabhavanichniceinteractive-pixel" target="_blank" rel="noopener noreferrer" class="btn btn-outline magnet-btn" data-cursor="OPEN">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                <span>GITHUB</span>
+              </a>
+            </div>
+
+            <!-- Direct Copy Email Bar -->
+            <div class="copy-email-bar">
+              <span class="email-address" id="contact-email">durgabhavanich.niceinteractive@gmail.com</span>
+              <button class="copy-email-btn" id="copy-email-btn" title="Copy email address" aria-label="Copy email address">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                <span class="copy-btn-text">Copy Address</span>
+              </button>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="section-container footer-container">
+      
+      <div class="footer-brand-col">
+        <a href="#hero" class="footer-logo-link">
+          <img src="assets/images/bhavani-logo.jpg" alt="Bhavani Logo" class="footer-logo-img">
+          <div>
+            <span class="footer-name">BHAVANI</span>
+            <span class="footer-role">Frontend • QA • AI</span>
+          </div>
+        </a>
+        <p class="footer-tagline">
+          Building, testing and refining digital experiences that look stunning and perform reliably.
+        </p>
+      </div>
+
+      <div class="footer-links-col">
+        <div class="footer-links-group">
+          <span class="footer-links-title">Navigation</span>
+          <ul>
+            <li><a href="#work">Selected Work</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#skills">Skills Toolkit</a></li>
+            <li><a href="#approach">How I Work</a></li>
+            <li><a href="#qa-lab">QA Lab</a></li>
+            <li><a href="#journey">Journey</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-links-group">
+          <span class="footer-links-title">Connect</span>
+          <ul>
+            <li><a href="https://github.com/durgabhavanichniceinteractive-pixel" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+            <li><a href="https://www.linkedin.com/in/durga-bhavani-chilakamarthi-b5a062288" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+            <li><a href="mailto:durgabhavanich.niceinteractive@gmail.com">Direct Email</a></li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="footer-bottom">
+      <div class="section-container footer-bottom-inner">
+        <p class="copyright-text">
+          &copy; 2026 Bhavani. All rights reserved.
+        </p>
+        <button id="back-to-top" class="back-to-top-btn" aria-label="Back to top of page">
+          <span>Back to Top &uarr;</span>
+        </button>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Project Inspection Modal / Lightbox -->
+  <div id="project-modal" class="project-modal" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="modal-backdrop"></div>
+    <div class="modal-container">
+      <button class="modal-close-btn" id="modal-close" aria-label="Close details modal">&times;</button>
+      <div class="modal-body" id="modal-content">
+        <!-- Injected via JavaScript based on selected project -->
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
