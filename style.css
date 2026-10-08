@@ -545,7 +545,7 @@ ul, ol {
 .mobile-menu {
   position: fixed;
   inset: 0;
-  background-color: rgba(6, 6, 7, 0.98);
+  background-color: #06060773;
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
   z-index: 1000;
