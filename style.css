@@ -1084,6 +1084,8 @@ ul, ol {
   .project-grid, .project-card:nth-child(even) .project-grid { grid-template-columns: 1fr; gap: 2rem; }
   .projects-list { gap: 30px;}
   .footer-links-col { justify-content: flex-start;}
+  .nav-container {
+    padding: 30px 20px;}
 }
 @media (max-width: 900px) {
   .project-grid, .project-card:nth-child(even) .project-grid, .footer-container, .qa-scenarios-row, .ai-philosophy-grid {grid-template-columns: minmax(0, 1fr); }
@@ -1135,6 +1137,10 @@ ul, ol {
 .pipeline-node { min-width: 250px;}
 .ai-philosophy-grid { margin-top: 10px;}
 .skill-card { width: 100%; max-width: 320px; margin: auto; }
+.brand-logo-frame { width: 35px; height: 35px;}
+.brand-name { letter-spacing: 1px; font-size: 15px;}
+.mobile-toggle { width: 30px; height: 30px;}
+
 }
 
 @media (max-width: 800px){
@@ -1173,6 +1179,9 @@ ul, ol {
   .copy-email-bar { margin-top: 10px;}
   .footer-container { padding:40px 20px;}
   .site-footer { padding:0;}
+  .nav-container { padding: 25px 20px; }
+  .hamburger-line { height: 1px;}
+  .hero-section { padding-top: 100px;}
 
 }
 @media (max-width: 374px) {
